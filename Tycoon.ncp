@@ -1,0 +1,767 @@
+<Project>
+  <Name>Tycoon</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Tycoon main</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>Factory</Name>
+        <Access>Public</Access>
+        <Location left="1597" top="1006" />
+        <Size width="241" height="111" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public Factory()</Member>
+        <Member type="Property">public List&lt;Recipe&gt; AvailableRecipe { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Item</Name>
+        <Access>Public</Access>
+        <Location left="1110" top="977" />
+        <Size width="183" height="94" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public Item()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Player</Name>
+        <Access>Public</Access>
+        <Location left="1020" top="395" />
+        <Size width="261" height="162" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public Player()</Member>
+        <Member type="Property">public string Name { get; set; }</Member>
+        <Member type="Property">public int Gold { get; set; }</Member>
+        <Member type="Property">public Inventory Inventory { get; set; }</Member>
+        <Member type="Method">public void SellInventory()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Recipe</Name>
+        <Access>Public</Access>
+        <Location left="1456" top="785" />
+        <Size width="164" height="162" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private readonly List&lt;RecipeItem&gt; _recipe</Member>
+        <Member type="Field">private RecipeItem _product</Member>
+        <Member type="Constructor">public Recipe()</Member>
+        <Member type="Property">public string Details { get; }</Member>
+        <Member type="Method">public bool CheckRequirements()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>RecipeItem</Name>
+        <Access>Public</Access>
+        <Location left="1218" top="785" />
+        <Size width="162" height="128" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public RecipeItem()</Member>
+        <Member type="Property">public Item Detail { get; set; }</Member>
+        <Member type="Property">public int Quantity { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Inventory</Name>
+        <Access>Public</Access>
+        <Location left="951" top="624" />
+        <Size width="247" height="196" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private readonly List&lt;InventoryItem&gt; _inventory</Member>
+        <Member type="Constructor">public Inventory()</Member>
+        <Member type="Method">public void AddItem(Item item, int quantity = 1)</Member>
+        <Member type="Method">public void RemoveItem(Item item, int quantity = 1)</Member>
+        <Member type="Method">public void HasItem(Item item)</Member>
+        <Member type="Method">public InventoryItem GetItem(Item item)</Member>
+        <Member type="Method">public int CalculateTotalPrice()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>InventoryItem</Name>
+        <Access>Public</Access>
+        <Location left="896" top="958" />
+        <Size width="162" height="145" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public InventoryItem()</Member>
+        <Member type="Property">public Item Detail { get; set; }</Member>
+        <Member type="Property">public int Quantity { get; set; }</Member>
+        <Member type="Method">public int GetTotalPrice()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>AssignedFactory</Name>
+        <Access>Public</Access>
+        <Location left="1741" top="679" />
+        <Size width="207" height="162" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public AssignedFactory()</Member>
+        <Member type="Property">public int LocationIndex { get; set; }</Member>
+        <Member type="Property">public Factory FactoryType { get; set; }</Member>
+        <Member type="Property">public Recipe SelectedRecipe { get; set; }</Member>
+        <Member type="Method">public void Produce()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>FactoryShop</Name>
+        <Access>Public</Access>
+        <Location left="1651" top="395" />
+        <Size width="348" height="179" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private List&lt;AssignedFactory&gt; _factories</Member>
+        <Member type="Constructor">public FactoryShop()</Member>
+        <Member type="Method">public void AddSamples()</Member>
+        <Member type="Method">public void BuyFactory(Player p, int location)</Member>
+        <Member type="Method">public AssignedFactory GetFactoryByLocationIndex(int location_index)</Member>
+        <Member type="Method">public void ProduceProduct(AssignedFactory af)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>AssetBank</Name>
+        <Access>Public</Access>
+        <Location left="1353" top="1227" />
+        <Size width="191" height="230" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public static List&lt;Item&gt; Items</Member>
+        <Member type="Field">public static List&lt;Recipe&gt; Recipes</Member>
+        <Member type="Field">public static List&lt;Factory&gt; Factories</Member>
+        <Member type="Constructor">AssetBank()</Member>
+        <Member type="Method">public static void PopulateItems()</Member>
+        <Member type="Method">public static void PopulateRecipes()</Member>
+        <Member type="Method">public static void PopulateFactories()</Member>
+        <Member type="Method">public static Item FindItemByID(int id)</Member>
+        <Member type="Method">public static Factory FindFactoryByID(int id)</Member>
+        <Modifier>Static</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Controller</Name>
+        <Access>Public</Access>
+        <Location left="1410" top="178" />
+        <Size width="199" height="145" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private Player _player</Member>
+        <Member type="Field">private FactoryShop _factoryShop</Member>
+        <Member type="Constructor">public Controller()</Member>
+        <Member type="Method">public void InitializePlayer(string name)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ObtainableObject</Name>
+        <Access>Public</Access>
+        <Location left="1353" top="1006" />
+        <Size width="183" height="162" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">protected ObtainableObject()</Member>
+        <Member type="Property">public int ID { get; set; }</Member>
+        <Member type="Property">public string Name { get; set; }</Member>
+        <Member type="Property">public int Price { get; set; }</Member>
+        <Member type="Property">public string Description { get; set; }</Member>
+        <Modifier>Abstract</Modifier>
+      </Entity>
+      <Entity type="Enum">
+        <Name>ITEM_ID</Name>
+        <Access>Public</Access>
+        <Location left="1110" top="1303" />
+        <Size width="163" height="231" />
+        <Collapsed>False</Collapsed>
+        <Value>IRON_ORE</Value>
+        <Value>IRON_INGOT</Value>
+        <Value>IRON_ROD</Value>
+        <Value>IRON_PLATE</Value>
+        <Value>IRON_BOLT</Value>
+        <Value>IRON_FRAME</Value>
+        <Value>IRON_BOLTED_PLATE</Value>
+        <Value>IRON_BLADE</Value>
+        <Value>IRON_BOX</Value>
+        <Value>IRON_SWORD</Value>
+      </Entity>
+      <Entity type="Enum">
+        <Name>FACTORY_ID</Name>
+        <Access>Public</Access>
+        <Location left="1641" top="1303" />
+        <Size width="163" height="146" />
+        <Collapsed>False</Collapsed>
+        <Value>MINER</Value>
+        <Value>SMELTER</Value>
+        <Value>CONSTRUCTOR</Value>
+        <Value>ASSEMBLER</Value>
+        <Value>MANUFACTURER</Value>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Association" first="2" second="10">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>1385</X>
+          <Y>284</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="8" second="10">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1819</X>
+          <Y>336</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1635</X>
+          <Y>292</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="5" second="2">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1144</X>
+          <Y>599</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1144</X>
+          <Y>591</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="8" second="7">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="5" second="6">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>993</X>
+          <Y>933</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+      </Relationship>
+      <Relationship type="Generalization" first="1" second="11">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="0" second="11">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Association" first="1" second="6">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="1" second="4">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>1268</X>
+          <Y>939</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="0" second="3">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>1647</X>
+          <Y>912</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="9" second="0">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1569</X>
+          <Y>1265</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="9" second="1">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1199</X>
+          <Y>1269</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="3" second="4">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+      </Relationship>
+      <Relationship type="Dependency" first="12" second="9">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>1328</X>
+          <Y>1353</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Dependency" first="13" second="9">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>1585</X>
+          <Y>1344</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Association" first="7" second="3">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1786</X>
+          <Y>882</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="7" second="0">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>1819</X>
+          <Y>980</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Generalization" first="3" second="11">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1488</X>
+          <Y>972</Y>
+        </BendPoint>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Tycoon refined</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Enum">
+        <Name>FACTORY_ID</Name>
+        <Access>Public</Access>
+        <Location left="1661" top="1323" />
+        <Size width="163" height="146" />
+        <Collapsed>False</Collapsed>
+        <Value>MINER</Value>
+        <Value>SMELTER</Value>
+        <Value>CONSTRUCTOR</Value>
+        <Value>ASSEMBLER</Value>
+        <Value>MANUFACTURER</Value>
+      </Entity>
+      <Entity type="Enum">
+        <Name>ITEM_ID</Name>
+        <Access>Public</Access>
+        <Location left="1130" top="1323" />
+        <Size width="163" height="231" />
+        <Collapsed>False</Collapsed>
+        <Value>IRON_ORE</Value>
+        <Value>IRON_INGOT</Value>
+        <Value>IRON_ROD</Value>
+        <Value>IRON_PLATE</Value>
+        <Value>IRON_BOLT</Value>
+        <Value>IRON_FRAME</Value>
+        <Value>IRON_BOLTED_PLATE</Value>
+        <Value>IRON_BLADE</Value>
+        <Value>IRON_BOX</Value>
+        <Value>IRON_SWORD</Value>
+      </Entity>
+      <Entity type="Class">
+        <Name>ObtainableObject</Name>
+        <Access>Public</Access>
+        <Location left="1373" top="1026" />
+        <Size width="183" height="162" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">protected ObtainableObject()</Member>
+        <Member type="Property">public int ID { get; set; }</Member>
+        <Member type="Property">public string Name { get; set; }</Member>
+        <Member type="Property">public int Price { get; set; }</Member>
+        <Member type="Property">public string Description { get; set; }</Member>
+        <Modifier>Abstract</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Controller</Name>
+        <Access>Public</Access>
+        <Location left="1403" top="197" />
+        <Size width="200" height="179" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private Player _player</Member>
+        <Member type="Field">private FactoryShop _factoryShop</Member>
+        <Member type="Constructor">public Controller()</Member>
+        <Member type="Property">public Player Player { get; }</Member>
+        <Member type="Property">public FactoryShop FactoryShop { get; }</Member>
+        <Member type="Method">public void InitializePlayer(string name)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>AssetBank</Name>
+        <Access>Public</Access>
+        <Location left="1373" top="1247" />
+        <Size width="191" height="230" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public static List&lt;Item&gt; Items</Member>
+        <Member type="Field">public static List&lt;Recipe&gt; Recipes</Member>
+        <Member type="Field">public static List&lt;Factory&gt; Factories</Member>
+        <Member type="Constructor">AssetBank()</Member>
+        <Member type="Method">public static void PopulateItems()</Member>
+        <Member type="Method">public static void PopulateRecipes()</Member>
+        <Member type="Method">public static void PopulateFactories()</Member>
+        <Member type="Method">public static Item FindItemByID(int id)</Member>
+        <Member type="Method">public static Factory FindFactoryByID(int id)</Member>
+        <Modifier>Static</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>FactoryShop</Name>
+        <Access>Public</Access>
+        <Location left="1671" top="415" />
+        <Size width="348" height="264" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private readonly List&lt;AssignedFactory&gt; _factories</Member>
+        <Member type="Constructor">public FactoryShop()</Member>
+        <Member type="Event">public event AssignFactoryEventHandler AssignedFactory</Member>
+        <Member type="Method">public void AddSamples()</Member>
+        <Member type="Method">public void BuyFactory(Player p, int location)</Member>
+        <Member type="Method">private bool HasEnoughGold(Player p, AssignedFactory af)</Member>
+        <Member type="Method">public void ProduceProduct(Player p, int location_index)</Member>
+        <Member type="Method">private void AddProductsToPlayer(Player p, AssignedFactory factory)</Member>
+        <Member type="Method">private void RemoveRequirements(Player p, AssignedFactory factory)</Member>
+        <Member type="Method">public AssignedFactory GetFactoryByLocationIndex(int location_index)</Member>
+        <Member type="Method">private void OnAssignedFactory(int location_index)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>AssignedFactory</Name>
+        <Access>Public</Access>
+        <Location left="1762" top="747" />
+        <Size width="207" height="162" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public AssignedFactory()</Member>
+        <Member type="Property">public int LocationIndex { get; set; }</Member>
+        <Member type="Property">public Factory FactoryType { get; set; }</Member>
+        <Member type="Property">public Recipe SelectedRecipe { get; set; }</Member>
+        <Member type="Method">public void Produce()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>InventoryItem</Name>
+        <Access>Public</Access>
+        <Location left="905" top="1087" />
+        <Size width="162" height="179" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private readonly Item _detail</Member>
+        <Member type="Field">private int _quantity</Member>
+        <Member type="Constructor">public InventoryItem()</Member>
+        <Member type="Property">public Item Detail { get; set; }</Member>
+        <Member type="Property">public int Quantity { get; set; }</Member>
+        <Member type="Method">public int GetTotalPrice()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>RecipeItem</Name>
+        <Access>Public</Access>
+        <Location left="1238" top="805" />
+        <Size width="162" height="128" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public RecipeItem()</Member>
+        <Member type="Property">public Item Detail { get; set; }</Member>
+        <Member type="Property">public int Quantity { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Recipe</Name>
+        <Access>Public</Access>
+        <Location left="1476" top="805" />
+        <Size width="164" height="162" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private readonly List&lt;RecipeItem&gt; _recipe</Member>
+        <Member type="Field">private RecipeItem _product</Member>
+        <Member type="Constructor">public Recipe()</Member>
+        <Member type="Property">public string Details { get; }</Member>
+        <Member type="Method">public bool CheckRequirements()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Player</Name>
+        <Access>Public</Access>
+        <Location left="919" top="415" />
+        <Size width="261" height="264" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private readonly string _name</Member>
+        <Member type="Field">private int _gold</Member>
+        <Member type="Field">private readonly Inventory _inventory</Member>
+        <Member type="Constructor">public Player()</Member>
+        <Member type="Property">public string Name { get; }</Member>
+        <Member type="Property">public int Gold { get; set; }</Member>
+        <Member type="Property">public Inventory Inventory { get; }</Member>
+        <Member type="Method">public void ReceiveGold(int amount)</Member>
+        <Member type="Method">public void SpendGold(int amount)</Member>
+        <Member type="Method">public void SellInventory()</Member>
+        <Member type="Method">private void OnPropertyChanged(string property_name)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Item</Name>
+        <Access>Public</Access>
+        <Location left="1130" top="1087" />
+        <Size width="183" height="94" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public Item()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Factory</Name>
+        <Access>Public</Access>
+        <Location left="1617" top="1026" />
+        <Size width="241" height="111" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public Factory()</Member>
+        <Member type="Property">public List&lt;Recipe&gt; AvailableRecipe { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>FactoryTycoonGame</Name>
+        <Access>Public</Access>
+        <Location left="1198" top="23" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Interface">
+        <Name>INotifyPropertyChanged</Name>
+        <Access>Public</Access>
+        <Location left="861" top="197" />
+        <Size width="271" height="78" />
+        <Collapsed>False</Collapsed>
+        <Member type="Event">event PropertyChangedEventHandler PropertyChanged</Member>
+      </Entity>
+      <Entity type="Delegate">
+        <Name>AssignFactoryEventHandler</Name>
+        <Access>Public</Access>
+        <Location left="2110" top="441" />
+        <Size width="191" height="95" />
+        <Collapsed>False</Collapsed>
+        <ReturnType>void</ReturnType>
+        <Param>object sender</Param>
+        <Param>int location_index</Param>
+      </Entity>
+      <Entity type="Class">
+        <Name>Inventory</Name>
+        <Access>Public</Access>
+        <Location left="986" top="769" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Generalization" first="9" second="2">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1508</X>
+          <Y>992</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Association" first="6" second="12">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>1839</X>
+          <Y>1000</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="6" second="9">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1807</X>
+          <Y>950</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Dependency" first="0" second="4">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>1605</X>
+          <Y>1364</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Dependency" first="1" second="4">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>1348</X>
+          <Y>1373</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Association" first="9" second="8">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="4" second="11">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1219</X>
+          <Y>1289</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="4" second="12">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1589</X>
+          <Y>1285</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="12" second="9">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>1667</X>
+          <Y>932</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="11" second="8">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>1288</X>
+          <Y>959</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="11" second="7">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Generalization" first="12" second="2">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="11" second="2">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Association" first="5" second="6">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="5" second="3">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1839</X>
+          <Y>356</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1629</X>
+          <Y>311</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="10" second="3">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>1378</X>
+          <Y>303</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Dependency" first="15" second="5">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+</Project>
